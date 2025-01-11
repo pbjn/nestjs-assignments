@@ -33,4 +33,20 @@ export class AssignmentController {
         }
         return true; //if can not be divided by any number, it’s prime
     }
+
+    @Get('factorial/:number')
+    calculateFactorial(@Param('number') number: string): { factorial: number } {
+        const num = parseInt(number, 10);
+        const factorial = this.factorial(num);
+        return { factorial };
+    }
+  
+    private factorial(num1: number): number {
+        if (num1 === 0 || num1 === 1) return 1;
+        let result = 1;
+        for (let i = 2; i <= num1; i++) {
+            result *= i;
+        }
+        return result;
+    }
 }
