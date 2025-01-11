@@ -18,4 +18,19 @@ export class AssignmentController {
     }
     return fib;
   }
+
+    @Get('prime/:number')
+    checkPrime(@Param('number') number: string): { isPrime: boolean } {
+        const num = parseInt(number, 10);
+        const isPrime = this.isPrimeNumber(num);
+        return { isPrime };
+    }
+
+    private isPrimeNumber(num: number): boolean {
+        if (num <= 1) return false;
+        for (let i = 2; i <= Math.sqrt(num); i++) {
+            if (num % i === 0) return false; //if it's divisible then it's not a prime
+        }
+        return true; //if can not be divided by any number, it’s prime
+    }
 }
